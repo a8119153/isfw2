@@ -5,18 +5,31 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-    <script type="text/javascript" src="lib/jquery.min.js"></script>
-    <script type="text/javascript" src="lib/osql.js"></script>
+    <script type="text/javascript" src="../jquery.min.js"></script>
+    <script type="text/javascript" src="../settings.js"></script>
+    <script type="text/javascript" src="../osql.js"></script>
 
     <script>
-        osql.requireLogin();
+        $().ready(function () {
+            init();
+        });
+
+        function init() {
+            var name = sessionStorage.getItem('student');
+            document.getElementById('welcome').innerHTML = 'ようこそ' + username + 'さん';
+
+        }
     </script>
 
 </head>
 
 <body>
     <h1>ユーザトップ</h1>
-    <p id="welcome">ようこそxxさん</p>
+    <p id="welcome"></p>
+    <hr>
+    <a href="ppp.html">時間割</a>
+    <hr>
+    <a href="sss.html">時間割の登録・変更</a>
     <hr>
 
 </body>
