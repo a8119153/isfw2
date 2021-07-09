@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <script type="text/javascript" src="../jquery.min.js"></script>
+    <script type="text/javascript" src="../settings.js"></script>
+    <script type="text/javascript" src="../osql.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            execSelect();
+        });
+
+        async function execSelect() {
+            var sql = `select Classes.time , class, Teachers.teacher , Courses.course ,
+             Forms.form from Classes inner join Teachers on Classes.t_id = Teachers.t_id 
+             inner join Courses on Classes.c_id = Courses.c_id inner join Forms on Classes.form_id = Forms.form_id where time = '月1'`;
+            var objects = await osql.connect(sql);
+            console.log(objects);
+            var html = '';
+            html = html + '<table border="1">';
+            html = html + '<td>' + '授業名' + '</td>'
+            html = html + '<td>' + '教授名' + '</td>'
+            html = html + '<td>' + 'コース' + '</td>'
+            html = html + '<td>' + '対面・非対面'
+            for (var i = 0; i < objects.length; i++) {
+                html = html + '<tr>';
+                var object = objects[i];
+                html = html + '<td>' + object.class + '</td>';
+                html = html + '<td>' + object.teacher + '</td>';
+                html = html + '<td>' + object.course + '</td>';
+                html = html + '<td>' + object.form + '</td>';
+                html = html + '<td>' + '<button onclick="button3Pressed()' + object.id + '">追加</button>' + '</td>';
+                html = html + '</tr>';
+            }
+            html = html + '</table>';
+            document.getElementById('result').innerHTML = html;
+        }
+
+        function button3Pressed() {
+
+        }
+    </script>
+
+</head>
+
+<body>
+    <h1>月曜一限の授業</h1>
+
+    <p id="result">xxxx</p>
+</body>
+
+</html>
