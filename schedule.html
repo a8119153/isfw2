@@ -12,6 +12,16 @@
     <script type="text/javascript" src="../osql.js"></script>
 
     <script>
+        $().ready(function () {
+            init();
+        });
+
+        function init() {
+            var name = sessionStorage.getItem('student');
+            document.getElementById('m1').innerHTML = 'ようこそ' + name + 'さん';
+
+        }
+
 
     </script>
 
@@ -21,7 +31,7 @@
     <h1>時間割</h1>
     <table>
         <tr>
-            <th>・
+            <th>　
             <th>月曜日</th>
             <th>火曜日</th>
             <th>水曜日</th>
@@ -29,9 +39,9 @@
             <th>金曜日</th>
         <tr>
             <th>1限</th>
-            <td>国語</td>
-            <td>国語</td>
-            <td>国語</td>
+            <td id="m1">空</td>
+            <td>空</td>
+            <td>空</td>
             <td>国語</td>
             <td>国語</td>
         <tr>
