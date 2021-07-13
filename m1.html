@@ -15,7 +15,7 @@
         });
 
         async function execSelect() {
-            var sql = `select Classes.time , class, Teachers.teacher , Courses.course ,
+            var sql = `select Classes.time ,id,  class, Teachers.teacher , Courses.course ,
              Forms.form from Classes inner join Teachers on Classes.t_id = Teachers.t_id 
              inner join Courses on Classes.c_id = Courses.c_id inner join Forms on Classes.form_id = Forms.form_id where time = '月1'`;
             var objects = await osql.connect(sql);
@@ -41,7 +41,11 @@
         }
 
         function button3Pressed() {
+            var userid = sessionStorage.getItem('id');
 
+            var sql = `insert into SaveClass (userid, id) values (${userid}, ${object.id})`;
+
+            location.href = 'resuchedule.html';
         }
     </script>
 
