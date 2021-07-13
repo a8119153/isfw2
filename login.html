@@ -25,8 +25,9 @@
                 return;
             }
 
-            sessionStorage.setItem('id', objects[0].userid);
-            sessionStorage.setItem('pass', objects[0].password);
+            sessionStorage.setItem('id', objects[0].id);
+            sessionStorage.setItem('student', objects[0].student);
+
 
             location.href = 'usertop.html';
         }
