@@ -17,7 +17,10 @@
         });
 
         function init() {
-            var name = sessionStorage.getItem('student');
+            var sql = 'select * from M1';
+            var objects = await osql.connect(sql);
+            console.log(objects);
+            var name = sessionStorage.getItem('class');
             document.getElementById('m1').innerHTML = 'ようこそ' + name + 'さん';
 
         }
