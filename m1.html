@@ -22,41 +22,42 @@
             console.log(objects);
             var html = '';
             html = html + '<table border="1">';
+            html = html + '<td>' + '番号' + '</td>';
             html = html + '<td>' + '授業名' + '</td>'
             html = html + '<td>' + '教授名' + '</td>'
             html = html + '<td>' + 'コース' + '</td>'
-            html = html + '<td>' + '対面・非対面'
+            html = html + '<td>' + '授業方法'
             for (var i = 0; i < objects.length; i++) {
                 html = html + '<tr>';
                 var object = objects[i];
+                html = html + '<td>' + object.id + '</td>';
                 html = html + '<td>' + object.class + '</td>';
                 html = html + '<td>' + object.teacher + '</td>';
                 html = html + '<td>' + object.course + '</td>';
                 html = html + '<td>' + object.form + '</td>';
-                // html = html + '<td>' + '<button onclick="button3Pressed()' + object.id + '">追加</button>' + '</td>';
+                html = html + '<td>' + `<button onclick="(function(){var id='${object.id}';button3Pressed(id);})();">追加</button>` + '</td>';
                 html = html + '</tr>';
             }
             html = html + '</table>';
+
             document.getElementById('result').innerHTML = html;
         }
 
-        async function button3Pressed() {
-            //var userid = sessionStorage.getItem('id').value;
-            var classes = document.getElementById('tf1').value;
-            //var sql = `insert into SaveClass (userid, id) values ("${userid}", "${classes}")`;
-            //var sql = `insert into SaveClass (userid) values ("${userid}")`;
-            // location.href = 'resuchedule.html';
 
-            //var classes = document.getElementById('tf1').value;
 
-            var sql = `create table M1 as select Classes.time ,id,  class, Teachers.teacher , Courses.course ,
-            Forms.form from Classes inner join Teachers on Classes.t_id = Teachers.t_id
-            inner join Courses on Classes.c_id = Courses.c_id inner join Forms on Classes.form_id = Forms.form_id where class = "${classes}"`;
+        function button3Pressed(id) {
+            execInsert(id);
+        }
+
+        async function execInsert(id) {
+            var userdid = sessionStorage.getItem('id');
+            console.log(userdid);
+            console.log(id);
+            var sql = `insert into SaveClass (userid, id) values ("${userdid}", "${id}")`;
             var objects = await osql.connect(sql);
-            console.log(objects);
+            document.getElementById('resultt').innerHTML = id + 'を追加しました。'
 
-            sessionStorage.setItem('class', objects[0].class);
-            //document.getElementById('result').innerHTML = 'OK';
+            location.href = "reschedule.html";
 
         }
     </script>
@@ -67,9 +68,7 @@
     <h1>月曜一限の授業</h1>
 
     <p id="result">xxxx</p>
-
-    授業名:<input id="tf1" value="" type="textfield">
-    <button onclick="button3Pressed()">登録</button>
+    <p id="resultt">xxxx</p>
 </body>
 
 </html>
