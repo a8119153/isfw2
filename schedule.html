@@ -17,7 +17,8 @@
         });
 
         function init() {
-            var sql = 'select * from M1';
+            var userdid = sessionStorage.getItem('id')
+            var sql = `select * from SaveClass where userid = ${userdid}`;
             var objects = await osql.connect(sql);
             console.log(objects);
             var name = sessionStorage.getItem('class');
