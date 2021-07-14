@@ -11,8 +11,8 @@
 
     <script>
         async function button1Pressed() {
-            var userid = document.getElementById('tf1').value;
-            var password = document.getElementById('tf2').value;
+            var userid = document.getElementById('tf5').value;
+            var password = document.getElementById('tf6').value;
 
             var sql = `select * from Students where id="${userid}";`;
             var objects = await osql.connect(sql);
@@ -39,9 +39,9 @@
     <h1>ユーザ管理　アプリケーション　v2</h1>
     <div>
         <h2>ログイン</h2>
-        userid:<input id="tf1" value="" type="textfield">
+        userid:<input id="tf5" value="" type="textfield">
         <br>
-        password:<input id="tf2" value="" type="password">
+        password:<input id="tf6" value="" type="password">
         <br>
         <button onclick="button1Pressed()">ログイン</button>
         <p id="result"></p>

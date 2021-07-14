@@ -22,30 +22,42 @@
             console.log(objects);
             var html = '';
             html = html + '<table border="1">';
+            html = html + '<td>' + '番号' + '</td>';
             html = html + '<td>' + '授業名' + '</td>'
             html = html + '<td>' + '教授名' + '</td>'
             html = html + '<td>' + 'コース' + '</td>'
-            html = html + '<td>' + '対面・非対面'
+            html = html + '<td>' + '授業方法'
             for (var i = 0; i < objects.length; i++) {
                 html = html + '<tr>';
                 var object = objects[i];
+                html = html + '<td>' + object.id + '</td>';
                 html = html + '<td>' + object.class + '</td>';
                 html = html + '<td>' + object.teacher + '</td>';
                 html = html + '<td>' + object.course + '</td>';
                 html = html + '<td>' + object.form + '</td>';
-                html = html + '<td>' + '<button onclick="button3Pressed()' + object.id + '">追加</button>' + '</td>';
+                html = html + '<td>' + `<button onclick="(function(){var id='${object.id}';button3Pressed(id);})();">追加</button>` + '</td>';
                 html = html + '</tr>';
             }
             html = html + '</table>';
+
             document.getElementById('result').innerHTML = html;
         }
 
-        function button3Pressed() {
-            var userid = sessionStorage.getItem('id');
 
-            var sql = `insert into SaveClass (userid, id) values (${userid}, ${object.id})`;
+        function button3Pressed(id) {
+            execInsert(id);
+        }
 
-            location.href = 'resuchedule.html';
+        async function execInsert(id) {
+            var userdid = sessionStorage.getItem('id');
+            console.log(userdid);
+            console.log(id);
+            var sql = `insert into SaveClass (userid, id) values ("${userdid}", "${id}")`;
+            var objects = await osql.connect(sql);
+            document.getElementById('resultt').innerHTML = id + 'を追加しました。'
+
+            location.href = "reschedule.html";
+
         }
     </script>
 
@@ -55,6 +67,7 @@
     <h1>月曜一限の授業</h1>
 
     <p id="result">xxxx</p>
+    <p id="resultt">xxxx</p>
 </body>
 
 </html>
