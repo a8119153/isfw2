@@ -54,9 +54,10 @@
             console.log(id);
             var sql = `insert into SaveClass (userid, s_id) values ("${userdid}", "${id}")`;
             var objects = await osql.connect(sql);
+            console.log(sql);
             document.getElementById('resultt').innerHTML = id + 'を追加しました。'
 
-            sessionStorage.setItem('s_id', objects.id);
+            sessionStorage.setItem('s_id', objects.s_id);
 
             location.href = "reschedule.html";
 
