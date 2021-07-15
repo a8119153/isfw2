@@ -18,13 +18,14 @@
 
         function init() {
             var userdid = sessionStorage.getItem('id')
-            //var sql = `select * from SaveClass where userid = ${userdid}`;
+            // console.log(userdid);
+            var objects = await osql.connect(sql);
+            var sql = `select userid, s_id, time, class from SaveClass inner join Classes on SaveClass.s_id = Classes.id where userid = ${userdid} AND time = '月1';`;
 
-            var sql = `select userid, s_id, time, class from SaveClass from SaveClass inner join Classes on SaveClass.s_id = Classes.id where userid = ${userdid} AND time = '月1';`;
-            //var objects = await osql.connect(sql);
-            //console.log(objects);
+            sessionStorage.setItem('class', object.class);
 
-            var classes = sessionStorage.getItem('s_id');
+            var classes = sessionStorage.getItem('class');
+            console.log(classes);
             document.getElementById('m1').innerHTML = classes;
 
         }
