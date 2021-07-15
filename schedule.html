@@ -508,7 +508,7 @@
             var userdid = sessionStorage.getItem('id');
             console.log(userdid);
 
-            var sql = `select userid, s_id, time, class form from SaveClass inner join Classes on SaveClass.s_id = Classes.id where userid = '${userdid}' AND time = '金5';`;
+            var sql = `select userid, s_id, time, class ,form from SaveClass inner join Classes on SaveClass.s_id = Classes.id where userid = '${userdid}' AND time = '金5';`;
             console.log(sql);
             var objects = await osql.connect(sql);
             for (var i = 0; i < objects.length; i++) {
