@@ -44,7 +44,6 @@
         }
 
 
-
         function button3Pressed(id) {
             execInsert(id);
         }
@@ -53,7 +52,7 @@
             var userdid = sessionStorage.getItem('id');
             console.log(userdid);
             console.log(id);
-            var sql = `insert into SaveClass (userid, id) values ("${userdid}", "${id}")`;
+            var sql = `insert into SaveClass (userid, s_id) values ("${userdid}", "${id}")`;
             var objects = await osql.connect(sql);
             document.getElementById('resultt').innerHTML = id + 'を追加しました。'
 
