@@ -38,10 +38,11 @@
             var password = document.getElementById('tf2').value;
             var username = document.getElementById('tf3').value;
 
-            var sql = `update Users set name="${username}", password="${password}" where id="${userid}";`;
+            var sql = `update Students set student="${username}", password="${password}" where id="${userid}";`;
             var objects = await osql.connect(sql);
 
             document.getElementById('result').innerHTML = 'OK';
+
         }
     </script>
 
@@ -49,14 +50,20 @@
 
 <body>
     <h1>User変更</h1>
-    userid:<input id="tf1" value="" type="textfield" disabled>
+    userid:<input id="tf1" value="" type="textfield">
     <br>
     password:<input id="tf2" value="" type="password">
     <br>
     name:<input id="tf3" value="" type="textfield">
+    <br>
     <button onclick="button2Pressed()">変更</button>
-
+    <hr>
     <p id="result"></p>
+    <hr>
+    <a href="login.html">ログイン画面に戻る</a>
+
+
+
 </body>
 
 </html>
