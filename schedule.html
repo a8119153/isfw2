@@ -21,7 +21,7 @@
             var userdid = sessionStorage.getItem('id');
             console.log(userdid);
 
-            var sql = `select userid, s_id, time, class from SaveClass inner join Classes on SaveClass.s_id = Classes.id where userid = '${userdid}' AND time = '月1';`;
+            var sql = `select userid, s_id, time, class, form_id from SaveClass inner join Classes on SaveClass.s_id = Classes.id where userid = '${userdid}' AND time = '月1';`;
             console.log(sql);
             var objects = await osql.connect(sql);
             for (var i = 0; i < objects.length; i++) {
@@ -30,10 +30,10 @@
                 //var objects = await osql.connect(sql);
 
                 sessionStorage.setItem('class', object.class);
+                sessionStorage.setItem('form_id', object.form);
 
                 var classes = sessionStorage.getItem('class');
                 console.log(classes);
-
 
                 document.getElementById('m1').innerHTML = classes;
             }
