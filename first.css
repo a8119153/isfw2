@@ -1,8 +1,14 @@
+body{
+    background-color: lightyellow;
+    text-align: center;
+}
+
 table{
     padding: 10px;
     width: 700px;
     border-collapse: collapse;
-
+    margin-left: auto;
+    margin-right: auto;
 }
 th{
     border: 1px solid black;
@@ -17,4 +23,17 @@ td{
     text-align: center;
     vertical-align: middle;
     padding: 5px;
+}
+
+#a1{
+    color:red
+}
+#a2{
+    color:blue
+}
+#a3{
+    color:greenyellow
+}
+#a4{
+    color:plum
 }
